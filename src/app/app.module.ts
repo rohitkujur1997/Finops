@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgToastModule } from 'ng-angular-popup'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +58,7 @@ import { AssesmentReportComponent } from './assesment-report/assesment-report.co
 import { ResourceListComponent } from './resource-list/resource-list.component';
 import { SendMailComponent } from './send-mail/send-mail.component';
 import { SubscriptionComponent } from './component/subscription/subscription.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -69,8 +71,10 @@ import { SubscriptionComponent } from './component/subscription/subscription.com
     ResourceListComponent,
     SendMailComponent,
     SubscriptionComponent,
+    ResetPasswordComponent,
   ],
   imports: [
+    NgToastModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

@@ -19,6 +19,7 @@ export class loginService {
 
 
   SignUpUser(user: any) {
+    debugger;
     return this.httpClient.post(
       this.baseApiUrl + 'Login/SignUp',
       {
@@ -35,10 +36,12 @@ export class loginService {
   }
 
   login(model: any){
+     debugger;
      return this.httpClient.post (this.baseApiUrl + 'Login/LoginAsync',model);
   }
 
  loginUser(loginInfo:Array<String>){
+ debugger;
     return this.httpClient.post(
 
       this.baseApiUrl + 'Login/LoginAsync',

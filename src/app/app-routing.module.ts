@@ -9,11 +9,13 @@ import { PermissionGuard } from './permission.guard';
 import { ResourceListComponent } from './resource-list/resource-list.component';
 import { SendMailComponent } from './send-mail/send-mail.component';
 import { SignupComponent } from './signup/signup.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'',component:LoginComponent},
+  {path: 'reset', component:ResetPasswordComponent},
   {path:'home', component:HomeComponent
   , canActivate:[PermissionGuard],
   data:{
@@ -21,10 +23,7 @@ const routes: Routes = [
   }},
 
   {path:'subscription',component:SubscriptionComponent},
-  {
-    path: 'forgotpassword',
-    component:ForgotpasswordComponent
-  },
+  
   {
     path: 'assessment-report',
     component: AssesmentReportComponent

@@ -23,6 +23,8 @@
     "awesome": "^0.0.7",
     "bootstrap": "^5.2.3",
     "font": "^0.0.4",
+    "ng-angular-popup": "^0.4.7",
+    "ngx-bootstrap": "^10.2.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.20",
     "tslib": "^2.3.0",

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { FloatLabelType } from '@angular/material/form-field';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import Swal from 'sweetalert2';
 import { loginService } from '../service/login.service';
+import { ResetPasswordService} from '../service/reset-password-service';
 
 
 @Component({
@@ -18,13 +20,18 @@ export class LoginComponent implements OnInit{
    isUserValid = false;
    RoleA : any = ['Admin', 'User' ];
 
+   public resetPasswordEmail! : string;
+   public isValidEmail! : boolean;
+
    //isUserValid: boolean | undefined;
    hide = true;
    floatLabelControl = new FormControl('auto' as FloatLabelType);
 
    constructor(
      private loginservice: loginService,
-     private _router: Router
+     private _router: Router,
+     private toast: NgToastService,
+     private resetService: ResetPasswordService
      // private emailservice: ResetPasswordService
    ) { }
 
@@ -43,6 +50,40 @@ export class LoginComponent implements OnInit{
 
    });
 
+checkValidEmail(event : string){
+const value = event;
+const pattern = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,3}$/;
+ this.isValidEmail = pattern.test(value);
+ return this.isValidEmail; 
+}
+
+confirmToSend(){
+  if(this.checkValidEmail(this.resetPasswordEmail)){
+    console.log(this.resetPasswordEmail); 
+    
+
+    this.resetService.sendResetPasswordLink(this.resetPasswordEmail).subscribe({
+      next:(res)=>{
+        this.toast.success({
+          detail: 'Success',
+          summary : 'Email has been sent!!',
+          duration: 5000,
+        });
+        this.resetPasswordEmail = ""; 
+        const buttonRef = document.getElementById("closeBtn")
+        buttonRef?.click();
+      },
+      error:(err)=>{
+          this.toast.error({
+            detail: 'ERROR',
+            summary: 'Something went wrong!',
+            duration: 5000,
+          });
+      }
+    })
+
+  }
+}
 
 
    // loginUser() {
